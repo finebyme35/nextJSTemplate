@@ -3,11 +3,16 @@ import Input from "./Input";
 
 interface IProps {
   wrapClassName?: string;
-  getValueMin: number;
-  getValueMax: number;
+  getValueMin: string;
+  getValueMax: string;
   setValueMax: any;
   setValueMin: any;
-  insideWrapClassName?: string;
+  insideWrapClassNameMin?: string;
+  insideWrapClassNameMax?: string;
+  childOnlyFieldRequiredMax: any;
+  childOnlyFieldRequiredMin: any;
+  childMaxLength: number;
+  childMinLength: number;
 }
 
 export default function InputMinMax({
@@ -23,18 +28,18 @@ export default function InputMinMax({
       }
     >
       <Input
-        onlyFieldRequired="Number"
-        maxLength={7}
+        onlyFieldRequired={props.childOnlyFieldRequiredMin}
+        maxLength={props.childMinLength}
         getValue={props.getValueMin}
         setValue={props.setValueMin}
-        wrapClassName={props.insideWrapClassName}
+        wrapClassName={props.insideWrapClassNameMin}
       />
       <Input
-        onlyFieldRequired="Number"
-        maxLength={7}
+        onlyFieldRequired={props.childOnlyFieldRequiredMax}
+        maxLength={props.childMaxLength}
         getValue={props.getValueMax}
         setValue={props.setValueMax}
-        wrapClassName={props.insideWrapClassName}
+        wrapClassName={props.insideWrapClassNameMax}
       />
     </div>
   );

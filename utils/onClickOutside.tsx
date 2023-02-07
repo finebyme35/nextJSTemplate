@@ -1,6 +1,6 @@
-import { ChangeEvent, useEffect } from "react";
+import React, { ChangeEvent, useEffect } from "react";
 
-export default function useOnClickOutSide(ref: any, handler: any, insideElement: string) {
+export default function useOnClickOutSide(ref: React.MutableRefObject<any>, handler: React.MouseEventHandler<any>, insideElement: string) {
     useEffect(() => {
       const listener = (event: any) => {
         if (!ref.current || ref.current.contains(event.target)) {

@@ -2,14 +2,12 @@ import React, { ChangeEvent, useMemo, useRef, useState } from "react";
 import { Eye, EyeOff } from 'tabler-icons-react';
 import {
   inputCurrencyFormatHelper,
-  inputCurrencyHelperUndefined,
   inputDefaultSevenNumberAutoDotValue,
   inputNumberHelper,
   inputNumberHelperDot,
   inputNumberHelperWithoutMinus,
   inputNumberHelperWithStringToUpperAndLower,
   inputStringHelperTwo,
-  maskCurrency,
   maskPhone,
 } from "utils/inputHelper";
 
@@ -68,6 +66,7 @@ export default function Input({
     }
   };
   const onChangeEvent = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(event)
     if (props.onlyFieldRequired == "Currency"){
         let value = inputCurrencyFormatHelper(inputNumberHelperWithoutMinus(event))
         props.setValue(value)
@@ -88,8 +87,9 @@ export default function Input({
       switchFunctionSetValue(event);
       
     }else{
-        props.setValue(event.target.value);
+      props.setValue(event.target.value);
     }
+    
   };
 
   const changeMaxLength = () => {
@@ -114,7 +114,7 @@ export default function Input({
       className={props.leftEye ? "outline-none pl-[3rem] " + props.wrapClassName : "outline-none " + props.wrapClassName}
       maxLength={changeMaxLength()}
       min="0"
-      value={props.getValue}
+      value={props.getValue.toString() || ""}
       onChange={(event: ChangeEvent<HTMLInputElement>) => onChangeEvent(event)}
       ref={inputCard}
       placeholder={props.placeHolder}
@@ -124,14 +124,14 @@ export default function Input({
     size={props.passwordType?.size}
     strokeWidth={2}
     color={props.passwordType?.color}
-    className={props.leftEye ? "absolute left-[4%] cursor-pointer " + props.passwordType?.wrapClassName : "absolute left-[18%] cursor-pointer " + props.passwordType?.wrapClassName}
+    className={props.leftEye ? "absolute left-[4%] cursor-pointer " + props.passwordType?.wrapClassName : "absolute left-[21%] cursor-pointer " + props.passwordType?.wrapClassName}
     onClick={() => changeInput()}
   /> : ""}
   {visible ? <EyeOff
    size={props.passwordType?.size}
    strokeWidth={2}
    color={props.passwordType?.color}
-   className={props.leftEye ? "absolute left-[4%] cursor-pointer " + props.passwordType?.wrapClassName : "absolute left-[18%] cursor-pointer " + props.passwordType?.wrapClassName}
+   className={props.leftEye ? "absolute left-[4%] cursor-pointer " + props.passwordType?.wrapClassName : "absolute left-[21%] cursor-pointer " + props.passwordType?.wrapClassName}
    onClick={() => changeInput()}
   /> : "" }
     </div>

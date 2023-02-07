@@ -1,11 +1,11 @@
 .dropdown-container {
-    @apply text-left border relative rounded-[5px];
+    @apply text-left border relative rounded-[5px] w-full;
     .dropdown-input {
         @apply p-[5px] flex items-center justify-between cursor-pointer;
         user-select: none;
       }
     .dropdown-menu{
-        @apply absolute translate-y-[4px] w-full border rounded-[5px] overflow-auto max-h-[150px] bg-white;
+        @apply absolute z-30 translate-y-[4px] w-full border rounded-[5px] overflow-auto max-h-[150px] bg-white;
         .dropdown-item{
             @apply p-[5px] cursor-pointer;
         }
@@ -22,6 +22,17 @@
     }
     .dropdown-tag-close {
         @apply flex items-center;
+    }
+    .search-box {
+        padding: 5px;
+        background-color: #eee;
+    }
+    .search-box input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
     }
     
 }

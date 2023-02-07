@@ -12,11 +12,12 @@ const mockData = [
 ];
 
 export default function Home() {
-  const [getvalue, setValue] = useState(0);
-  const [getvalue1, setValue1] = useState(0);
-  const [getvalue2, setValue2] = useState(0);
-  const [getPrice, setPrice] = useState("");
+  const [getvalue, setValue] = useState("");
+  const [getvalue1, setValue1] = useState("0");
+  const [getvalue2, setValue2] = useState("0");
+  const [getPrice, setPrice] = useState(0);
   const [selectedValue, setSelectedValue] = useState([]);
+  const [selectedValue1, setSelectedValue1] = useState();
 
   return (
     <>
@@ -27,11 +28,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {/* <Input
+        <Input
           getValue={getPrice}
           setValue={setPrice}
           wrapClassName="rounded-xl p-5 mb-5"
-          onlyFieldRequired="Currency"
+          onlyFieldRequired="NumberAndString"
         />
          <Input
           password={true}
@@ -40,25 +41,44 @@ export default function Home() {
           setValue={setValue}
           maxLength={10}
           wrapClassName="rounded-xl p-5"
-          leftEye={true}
+          leftEye={false}
           type={"password"}
           
         />
         <InputMinMax
-          insideWrapClassName="rounded-xl p-5"
+          insideWrapClassNameMax="rounded-xl p-5 border"
+          insideWrapClassNameMin="rounded-xl p-5 border"
           getValueMin={getvalue1}
           setValueMin={setValue1}
           getValueMax={getvalue2}
           setValueMax={setValue2}
+          childMaxLength={7}
+          childMinLength={7}
+          childOnlyFieldRequiredMax="Number"
+          childOnlyFieldRequiredMin="NumberAndString"
         />
-        <PhoneInput /> */}
+        <PhoneInput />
         <Dropdown
           placeHolder="Select..."
           options={mockData}
           selectedArrayValue={selectedValue}
           setSelectedValue={setSelectedValue}
           isMulti={true}
+          outsideClickClassName="div.dropdown-menu"
+          isSearchable
         />
+        <div className="mt-[15px]">
+        <Dropdown
+          placeHolder="Select..."
+          options={mockData}
+          selectedArrayValue={selectedValue}
+          setSelectedValue={setSelectedValue}
+          isMulti={true}
+          outsideClickClassName="div.dropdown-menu"
+          isSearchable
+          
+        />
+        </div>
       </main>
     </>
   );
