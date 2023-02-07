@@ -66,7 +66,6 @@ export default function Input({
     }
   };
   const onChangeEvent = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event)
     if (props.onlyFieldRequired == "Currency"){
         let value = inputCurrencyFormatHelper(inputNumberHelperWithoutMinus(event))
         props.setValue(value)
@@ -114,7 +113,7 @@ export default function Input({
       className={props.leftEye ? "outline-none pl-[3rem] " + props.wrapClassName : "outline-none " + props.wrapClassName}
       maxLength={changeMaxLength()}
       min="0"
-      value={props.getValue.toString() || ""}
+      value={props.getValue?.toString() || ""}
       onChange={(event: ChangeEvent<HTMLInputElement>) => onChangeEvent(event)}
       ref={inputCard}
       placeholder={props.placeHolder}

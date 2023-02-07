@@ -1,3 +1,4 @@
+import DatePicker from "components/DatePicker";
 import Dropdown from "components/Dropdown";
 import Input from "components/Input";
 import InputMinMax from "components/InputMinMax";
@@ -18,6 +19,8 @@ export default function Home() {
   const [getPrice, setPrice] = useState(0);
   const [selectedValue, setSelectedValue] = useState([]);
   const [selectedValue1, setSelectedValue1] = useState();
+  const [getDateValue, setDateValue] = useState("");
+
 
   return (
     <>
@@ -32,7 +35,7 @@ export default function Home() {
           getValue={getPrice}
           setValue={setPrice}
           wrapClassName="rounded-xl p-5 mb-5"
-          onlyFieldRequired="NumberAndString"
+          onlyFieldRequired="Currency"
         />
          <Input
           password={true}
@@ -55,7 +58,7 @@ export default function Home() {
           childMaxLength={7}
           childMinLength={7}
           childOnlyFieldRequiredMax="Number"
-          childOnlyFieldRequiredMin="NumberAndString"
+          childOnlyFieldRequiredMin="Number"
         />
         <PhoneInput />
         <Dropdown
@@ -71,14 +74,15 @@ export default function Home() {
         <Dropdown
           placeHolder="Select..."
           options={mockData}
-          selectedArrayValue={selectedValue}
-          setSelectedValue={setSelectedValue}
-          isMulti={true}
+          selectedValue={selectedValue1}
+          setSelectedValue={setSelectedValue1}
+          isMulti={false}
           outsideClickClassName="div.dropdown-menu"
           isSearchable
           
         />
         </div>
+        <DatePicker setValue={setDateValue} getValue={getDateValue}/>
       </main>
     </>
   );
