@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState } from "react";
-import useOnClickOutSide from "utils/onClickOutside";
+import useOnClickOutSide from "hooks/onClickOutside";
 interface OptionArray {
   id: number | string;
   value: number | string;
