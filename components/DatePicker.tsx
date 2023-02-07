@@ -24,7 +24,6 @@ export default function DatePicker({ ...props }: IProps) {
   });
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
   const refDatePicker = useRef(null);
-  const inputRef = useRef(null);
 
   useOnClickOutSide(
     refDatePicker,
@@ -54,7 +53,6 @@ export default function DatePicker({ ...props }: IProps) {
     // }
   };
   const updateDateFromInput = (event: any) => {
-    if (inputRef.current) {
       let dateValue = event.target.value;
       let dateData = getDateFromDateString(dateValue);
       if (dateData !== null) {
@@ -65,7 +63,6 @@ export default function DatePicker({ ...props }: IProps) {
           month: dateData.month - 1,
           monthDetails: getMonthDetails(dateData.year, dateData.month - 1),
         });
-      }
     }
   };
 
