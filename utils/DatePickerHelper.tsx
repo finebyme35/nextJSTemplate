@@ -3,7 +3,7 @@ export let todayTimestamp = Date.now() - (Date.now() % oneDay) + (new Date().get
 export let date = new Date();
 export let year = date.getFullYear();
 export let month = date.getMonth();
-export let daysMap = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'];
+export let daysMap = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
 export let monthMap = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
 export const getDayDetails =(args: any)=> {
     let date = args.index - args.firstDay; 

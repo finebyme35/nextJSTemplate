@@ -128,7 +128,7 @@ export default function DatePicker({ ...props }: IProps) {
     return (
       <div className="c-container">
         <div className="cc-head">
-          {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map((d, i) => (
+          {["PAZAR", "PTESİ", "SALI", "ÇAR", "PER", "CUMA", "CTESİ"].map((d, i) => (
             <div key={i} className="cch-name">
               {d}
             </div>

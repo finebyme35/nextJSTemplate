@@ -107,10 +107,12 @@ export default function Input({
 
 
   return (
-    <div className={props.password ? "flex justify-start align-middle items-center" : ""}>
+    <div className={props.password ? "w-full h-full" : ""}>
+      <div className={props.password ? "container w-[210px]" : ""} >
+      <div className={props.password ? "relative w-full" : ""}>
     <input
       type={props.type ? visible ? "text" : props.type : "text"}
-      className={props.leftEye ? "outline-none pl-[3rem] " + props.wrapClassName : "outline-none " + props.wrapClassName}
+      className={props.leftEye ? "outline-none pl-[3rem] " + props.wrapClassName : "outline-none block " + props.wrapClassName}
       maxLength={changeMaxLength()}
       min="0"
       value={props.getValue?.toString() || ""}
@@ -119,20 +121,24 @@ export default function Input({
       placeholder={props.placeHolder}
       
     />
-    {props.password ? <Eye
+    {!visible && props.password ? <span className={props.leftEye ? "absolute top-[39%] ml-[15px] " : "flex items-center absolute top-[37%] right-0"}>
+      <Eye
     size={props.passwordType?.size}
     strokeWidth={2}
     color={props.passwordType?.color}
-    className={props.leftEye ? "absolute left-[4%] cursor-pointer " + props.passwordType?.wrapClassName : "absolute left-[21%] cursor-pointer " + props.passwordType?.wrapClassName}
+    className={props.leftEye ? "cursor-pointer " + props.passwordType?.wrapClassName : "cursor-pointer " + props.passwordType?.wrapClassName}
     onClick={() => changeInput()}
-  /> : ""}
-  {visible ? <EyeOff
+  />
+    </span> : ""}
+  {visible ? <span className={props.leftEye ? "absolute top-[39%] ml-[15px] " : "flex items-center absolute top-[37%] right-0"}><EyeOff
    size={props.passwordType?.size}
    strokeWidth={2}
    color={props.passwordType?.color}
-   className={props.leftEye ? "absolute left-[4%] cursor-pointer " + props.passwordType?.wrapClassName : "absolute left-[21%] cursor-pointer " + props.passwordType?.wrapClassName}
+   className={props.leftEye ? "cursor-pointer " + props.passwordType?.wrapClassName : "cursor-pointer " + props.passwordType?.wrapClassName}
    onClick={() => changeInput()}
-  /> : "" }
+  /></span> : "" }
+    </div>
+      </div>
     </div>
   );
 }
