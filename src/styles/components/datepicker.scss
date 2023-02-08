@@ -17,6 +17,8 @@
     height: 35px;
     overflow: hidden;
     border-radius: 20px;
+    padding:5px;
+    text-align: center;
 }
 .mdp-input input:focus{
     outline: none;
@@ -290,4 +292,13 @@
 }
 .c-day-container.highlight-green .cdc-day span{
     background: #d4e2cb;
+}
+
+.date-input{
+    input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+    opacity: 0
+}
 }

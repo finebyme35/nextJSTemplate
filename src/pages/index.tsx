@@ -3,6 +3,7 @@ import Dropdown from "components/Dropdown";
 import Input from "components/Input";
 import InputMinMax from "components/InputMinMax";
 import PhoneInput from "components/PhoneInput";
+import Switch from "components/Switch";
 import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
 
@@ -20,7 +21,7 @@ export default function Home() {
   const [selectedValue, setSelectedValue] = useState([]);
   const [selectedValue1, setSelectedValue1] = useState();
   const [getDateValue, setDateValue] = useState("");
-
+  let [checked, setChecked] = useState(false);
 
   return (
     <>
@@ -37,16 +38,15 @@ export default function Home() {
           wrapClassName="rounded-xl p-5 mb-5"
           onlyFieldRequired="Currency"
         />
-         <Input
+        <Input
           password={true}
-          passwordType={{color: "red", size: 16, wrapClassName: ""}}
+          passwordType={{ color: "red", size: 16, wrapClassName: "" }}
           getValue={getvalue}
           setValue={setValue}
           maxLength={10}
           wrapClassName="rounded-xl p-5"
           leftEye={false}
           type={"password"}
-          
         />
         <InputMinMax
           insideWrapClassNameMax="rounded-xl p-5 border"
@@ -71,18 +71,25 @@ export default function Home() {
           isSearchable
         />
         <div className="mt-[15px]">
-        <Dropdown
-          placeHolder="Select..."
-          options={mockData}
-          selectedValue={selectedValue1}
-          setSelectedValue={setSelectedValue1}
-          isMulti={false}
-          outsideClickClassName="div.dropdown-menu"
-          isSearchable
-          
-        />
+          <Dropdown
+            placeHolder="Select..."
+            options={mockData}
+            selectedValue={selectedValue1}
+            setSelectedValue={setSelectedValue1}
+            isMulti={false}
+            outsideClickClassName="div.dropdown-menu"
+            isSearchable
+          />
         </div>
-        <DatePicker setValue={setDateValue} getValue={getDateValue}/>
+        <DatePicker setValue={setDateValue} getValue={getDateValue} />
+        <Switch
+          name="Toggle"
+          id="toggleSwitch"
+          checked={checked}
+          setChecked={setChecked}
+          dataYes="Yes"
+          dataNo="No"
+        />
       </main>
     </>
   );

@@ -63,6 +63,7 @@ export default function DatePicker({ ...props }: IProps) {
           month: dateData.month - 1,
           monthDetails: getMonthDetails(dateData.year, dateData.month - 1),
         });
+        
     }
   };
 
@@ -74,6 +75,7 @@ export default function DatePicker({ ...props }: IProps) {
   const onDateClick = (day: any) => {
     setState({ ...getState, selectedDay: day.timestamp });
     setDateToInput(day.timestamp);
+    setShowDatePicker(false);
     // if(this.props.onChange) {
     //     this.props.onChange(day.timestamp);
     // }
@@ -140,14 +142,16 @@ export default function DatePicker({ ...props }: IProps) {
   };
   return (
     <div className="MyDatePicker" ref={refDatePicker}>
-      <div className="mdp-input" onClick={() => openDatePicker()}>
+      <div className="mdp-input border cursor-pointer" onClick={() => openDatePicker()}>
         <input
           type="date"
           value={props.getValue || ""}
           onChange={(event) => {
             updateDateFromInput(event);
           }}
+          className="hidden"
         />
+        <span className="text-[14px] leading-[16px] text-black mr-[10px]">{props.getValue ? props.getValue : "YYYY.AA.GG"}</span>
       </div>
       {showDatePicker ? (
         <div className="mdp-container">
