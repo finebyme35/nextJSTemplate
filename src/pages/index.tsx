@@ -3,9 +3,15 @@ import Dropdown from "components/Dropdown";
 import Input from "components/Input";
 import InputMinMax from "components/InputMinMax";
 import PhoneInput from "components/PhoneInput";
+import ProgressStep from "components/ProgressStep";
+import { SelectColumnFilter } from "components/TableComponent/TableSelectColumnFilter";
 import Switch from "components/Switch";
+import Table from "components/TableComponent/Table";
+import { StatusPill } from "components/TableComponent/TableStatusPill";
 import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
+import { getData } from "utils/mockData";
+import { AvatarCell } from "components/TableComponent/TableAvatarCell";
 
 const mockData = [
   { id: 0, value: "1", label: "Select 1" },
@@ -23,6 +29,39 @@ export default function Home() {
   const [getDateValue, setDateValue] = useState("");
   let [checked, setChecked] = useState(false);
 
+  const columns = useMemo(
+    () => [
+      {
+        Header: "Name",
+        accessor: "name",
+        Cell: AvatarCell,
+      imgAccessor: "imgUrl",
+      emailAccessor: "email",
+      
+      },
+      {
+        Header: "Title",
+        accessor: "title",
+      },
+      {
+        Header: "Status",
+        accessor: "status",
+        Cell: StatusPill,
+      },
+      {
+        Header: "Role",
+        accessor: "role",
+        Filter: SelectColumnFilter, // new
+        filter: "includes", // new
+      },
+      {
+        Header: "Age",
+        accessor: "age",
+      },
+    ],
+    []
+  );
+  const data = useMemo(() => getData(), []);
   return (
     <>
       <Head>
@@ -32,7 +71,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Input
+        {/* <Input
           getValue={getPrice}
           setValue={setPrice}
           wrapClassName="rounded-xl p-5 mb-5"
@@ -89,7 +128,9 @@ export default function Home() {
           setChecked={setChecked}
           dataYes="Yes"
           dataNo="No"
-        />
+        /> */}
+        <ProgressStep />
+        <Table columns={columns} data={data} />
       </main>
     </>
   );
