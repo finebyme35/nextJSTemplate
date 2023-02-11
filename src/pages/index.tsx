@@ -3,7 +3,6 @@ import Dropdown from "components/Dropdown";
 import Input from "components/Input";
 import InputMinMax from "components/InputMinMax";
 import PhoneInput from "components/PhoneInput";
-import ProgressStep from "components/ProgressStep";
 import { SelectColumnFilter } from "components/TableComponent/TableSelectColumnFilter";
 import Switch from "components/Switch";
 import Table from "components/TableComponent/Table";
@@ -12,6 +11,7 @@ import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
 import { getData } from "utils/mockData";
 import { AvatarCell } from "components/TableComponent/TableAvatarCell";
+import ProgressStep from "components/ProgressStatus";
 
 const mockData = [
   { id: 0, value: "1", label: "Select 1" },
@@ -129,8 +129,8 @@ export default function Home() {
           dataYes="Yes"
           dataNo="No"
         /> */}
-        <ProgressStep />
         <Table columns={columns} data={data} />
+        <ProgressStep />
       </main>
     </>
   );
