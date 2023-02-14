@@ -7,7 +7,7 @@ const baseFetchHook = async (url: string, data: any, isAuth: boolean, isNotifica
     };
     if (isAuth == true) {
       const session = await getSession();
-      headers.Authorization = "Bearer " + "access Token gelecek.";
+      headers.Authorization = "Bearer " + session?.user?.accessToken;
     }
     const res = await fetch(`/api/` + url, {
       method: "POST",
