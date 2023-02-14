@@ -6,7 +6,7 @@ interface IProps {
   changeclassName?: string;
 }
 
-export default function ProgressStep({ changeclassName}: IProps) {
+export default function ProgressStatus({ changeclassName}: IProps) {
   const ObjItem = [
     {
       id: 0,
@@ -54,15 +54,16 @@ export default function ProgressStep({ changeclassName}: IProps) {
     <>
       <ol className="ml-5 pl-3 mt-3 lg:hidden block relative text-gray-500 border-l border-gray-200 dark:border-gray-700 dark:text-gray-400">
         {ObjItem
-          ? ObjItem.map((x) => {
+          ? ObjItem.map((x,i) => {
               return (
-                <li className="mb-10 ml-6">
+                <li className="mb-10 ml-6" key={i}>
                   <span
                     className={
                       x.isPayment
                         ? "absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -left-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900"
                         : "absolute flex items-center justify-center w-8 h-8 bg-slate-50 rounded-full -left-4 ring-4 ring-white dark:ring-gray-900 dark:bg-white"
                     }
+                    
                   >
                     {x.isPayment ? (
                       <svg
@@ -91,7 +92,7 @@ export default function ProgressStep({ changeclassName}: IProps) {
       </ol>
       <ol className="lg:flex hidden items-center w-full">
         {ObjItem
-          ? ObjItem.map((x) => {
+          ? ObjItem.map((x, i) => {
               return (
                 <li
                   className={
@@ -99,6 +100,7 @@ export default function ProgressStep({ changeclassName}: IProps) {
                       ? "flex w-full items-center  text-green-600 dark:text-green-500 after:content-[''] after:w-full after:h-1 last-of-type:after:border-none last-of-type:after:border-0 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800"
                       : "flex w-full items-center text-black dark:text-black last-of-type:after:border-none last-of-type:after:border-0 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800"
                   }
+                  key={i}
                 >
                   <span
                     className={
@@ -116,9 +118,9 @@ export default function ProgressStep({ changeclassName}: IProps) {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                     ) : (

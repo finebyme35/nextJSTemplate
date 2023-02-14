@@ -13,7 +13,7 @@ interface IProps {
 
 export default function Switch({ ...props }: IProps) {
     const handleKeyPress =(e: any) => {
-        if (e.keyCode !== 32) return;
+        if (e.keyCode != 32) return;
         e.preventDefault();
         props.setChecked(!props.checked)
       }

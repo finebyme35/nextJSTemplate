@@ -165,7 +165,7 @@ function Table({ columns, data }: IProps) {
               <div className="flex gap-x-2 items-center align-middle">
                 <span className="text-sm text-gray-700">
                   Sayfa{" "}
-                  <span className="font-medium">{state.pageIndex + 1}</span> of{" "}
+                  <span className="font-medium">{state.pageIndex + 1}</span> -{" "}
                   <span className="font-medium">{pageOptions.length}</span>
                 </span>
                 <label>

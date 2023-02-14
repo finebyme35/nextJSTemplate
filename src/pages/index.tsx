@@ -11,7 +11,9 @@ import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
 import { getData } from "utils/mockData";
 import { AvatarCell } from "components/TableComponent/TableAvatarCell";
-import ProgressStep from "components/ProgressStatus";
+import ProgressStatus from "components/ProgressStatus";
+import RichTextSunEditor from "components/RichTextSunEditor";
+import baseFetchHook from "hooks/baseFetchHook";
 
 const mockData = [
   { id: 0, value: "1", label: "Select 1" },
@@ -19,7 +21,7 @@ const mockData = [
   { id: 2, value: "3", label: "Select 3" },
 ];
 
-export default function Home() {
+export default function Home({countries}: any) {
   const [getvalue, setValue] = useState("");
   const [getvalue1, setValue1] = useState("0");
   const [getvalue2, setValue2] = useState("0");
@@ -28,7 +30,8 @@ export default function Home() {
   const [selectedValue1, setSelectedValue1] = useState();
   const [getDateValue, setDateValue] = useState("");
   let [checked, setChecked] = useState(false);
-
+  let [datas, setDatas] = useState();
+  let [email, setEmail] = useState('johndoe@graphcms.com');
   const columns = useMemo(
     () => [
       {
@@ -61,7 +64,8 @@ export default function Home() {
     ],
     []
   );
-  const data = useMemo(() => getData(), []);
+  const datass = useMemo(() => getData(), []);
+
   return (
     <>
       <Head>
@@ -129,9 +133,12 @@ export default function Home() {
           dataYes="Yes"
           dataNo="No"
         /> */}
-        <Table columns={columns} data={data} />
-        <ProgressStep />
+         <DatePicker setValue={setDateValue} getValue={getDateValue} />
+        <Table columns={columns} data={datass} />
+        {/* <ProgressStatus /> */}
+        {/* <RichTextSunEditor data={datas} setData={setDatas}/> */}
       </main>
     </>
   );
 }
+

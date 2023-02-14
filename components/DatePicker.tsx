@@ -1,4 +1,5 @@
 import useOnClickOutSide from "hooks/onClickOutside";
+import moment from "moment";
 import React, { useRef, useState } from "react";
 import {
   month,
@@ -114,7 +115,7 @@ export default function DatePicker({ ...props }: IProps) {
         <div
           className={
             "c-day-container " +
-            (day.month !== 0 ? " disabled" : "") +
+            (day.month != 0 ? " disabled" : "") +
             (isCurrentDay(day) ? " highlight" : "") +
             (isSelectedDay(day) ? " highlight-green" : "")
           }
@@ -130,7 +131,7 @@ export default function DatePicker({ ...props }: IProps) {
     return (
       <div className="c-container">
         <div className="cc-head">
-          {["PAZAR", "PTESİ", "SALI", "ÇAR", "PER", "CUMA", "CTESİ"].map((d, i) => (
+          {["PTESİ", "SALI", "ÇAR", "PER", "CUMA", "CTESİ", "PAZAR"].map((d, i) => (
             <div key={i} className="cch-name">
               {d}
             </div>
@@ -151,7 +152,7 @@ export default function DatePicker({ ...props }: IProps) {
           }}
           className="hidden"
         />
-        <span className="text-[14px] leading-[16px] text-black mr-[10px]">{props.getValue ? props.getValue : "YYYY.AA.GG"}</span>
+        <span className="text-[14px] leading-[16px] text-black mr-[10px]">{props.getValue ? moment(props.getValue).format("DD.MM.yyyy") : "GG.AA.YYYY"}</span>
       </div>
       {showDatePicker ? (
         <div className="mdp-container">
