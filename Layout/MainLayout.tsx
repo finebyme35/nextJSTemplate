@@ -4,6 +4,7 @@ import Head from "next/head";
 const AppHeader = dynamic(() => import("./AppHeader"), {
   ssr: false,
 });
+
 type LayoutType = {
   children?: React.ReactNode;
   title?: string;

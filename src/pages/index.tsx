@@ -9,11 +9,15 @@ import Table from "components/TableComponent/Table";
 import { StatusPill } from "components/TableComponent/TableStatusPill";
 import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
-import { getData } from "utils/mockData";
+import { getData, testProgressBarData } from "utils/mockData";
 import { AvatarCell } from "components/TableComponent/TableAvatarCell";
 import ProgressStatus from "components/ProgressStatus";
 import RichTextSunEditor from "components/RichTextSunEditor";
 import baseFetchHook from "hooks/baseFetchHook";
+import { observer } from "mobx-react-lite";
+import { useStore } from "stores/store";
+import ProgressBar from "components/ProgressBar";
+import Carousel from "components/Carousel";
 
 const mockData = [
   { id: 0, value: "1", label: "Select 1" },
@@ -21,7 +25,7 @@ const mockData = [
   { id: 2, value: "3", label: "Select 3" },
 ];
 
-export default function Home({countries}: any) {
+export default observer(function Home({countries}: any) {
   const [getvalue, setValue] = useState("");
   const [getvalue1, setValue1] = useState("0");
   const [getvalue2, setValue2] = useState("0");
@@ -32,6 +36,9 @@ export default function Home({countries}: any) {
   let [checked, setChecked] = useState(false);
   let [datas, setDatas] = useState();
   let [email, setEmail] = useState('johndoe@graphcms.com');
+  const {filterStore, modalStore} = useStore();
+  const { filter, getFilterData} = filterStore
+  const {openModal, modal, closeModal} = modalStore
   const columns = useMemo(
     () => [
       {
@@ -65,7 +72,18 @@ export default function Home({countries}: any) {
     []
   );
   const datass = useMemo(() => getData(), []);
+  const [completed, setCompleted] = useState(0);
 
+  useEffect(() => {
+    setCompleted(65)
+  }, []);
+    useMemo(() => {
+      
+      if(filter){
+        // console.log(getFilterData(datass, "Admin"))
+
+      }
+    },[])
   return (
     <>
       <Head>
@@ -137,8 +155,18 @@ export default function Home({countries}: any) {
         <Table columns={columns} data={datass} />
         {/* <ProgressStatus /> */}
         {/* <RichTextSunEditor data={datas} setData={setDatas}/> */}
+        <><button onClick={() => openModal(<Stateless />)}>Open</button></>
+        <><button onClick={() => closeModal()}>Close</button></>
+        {modal.body}
+        <ProgressBar  bgcolor={"#24af"} completed={completed} />
+        <Carousel />
       </main>
     </>
   );
-}
+})
 
+const Stateless = () => {
+  return(
+    <div>modal</div>
+  )
+}
