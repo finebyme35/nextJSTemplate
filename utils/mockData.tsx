@@ -69,3 +69,9 @@ export const testProgressBarData = [
   { bgcolor: "#00695c", completed: 30 },
   { bgcolor: "#ef6c00", completed: 53 },
 ];
+
+export const carouselData = [
+  {id: 0,image: "https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg", active:false},
+  {id: 1,image: "/gorsel1.jpg", active:true},
+  {id: 2, image: "/gorsel2.jpg", active: false}
+]

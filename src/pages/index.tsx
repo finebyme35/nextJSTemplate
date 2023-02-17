@@ -9,7 +9,7 @@ import Table from "components/TableComponent/Table";
 import { StatusPill } from "components/TableComponent/TableStatusPill";
 import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
-import { getData, testProgressBarData } from "utils/mockData";
+import { carouselData, getData, testProgressBarData } from "utils/mockData";
 import { AvatarCell } from "components/TableComponent/TableAvatarCell";
 import ProgressStatus from "components/ProgressStatus";
 import RichTextSunEditor from "components/RichTextSunEditor";
@@ -159,7 +159,7 @@ export default observer(function Home({countries}: any) {
         <><button onClick={() => closeModal()}>Close</button></>
         {modal.body}
         <ProgressBar  bgcolor={"#24af"} completed={completed} />
-        <Carousel />
+        <Carousel carouselData={carouselData}/>
       </main>
     </>
   );
