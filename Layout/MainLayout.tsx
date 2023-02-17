@@ -1,5 +1,7 @@
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import { useStore } from "stores/store";
+import { observer } from "mobx-react-lite";
 
 const AppHeader = dynamic(() => import("./AppHeader"), {
   ssr: false,
@@ -9,7 +11,9 @@ type LayoutType = {
   children?: React.ReactNode;
   title?: string;
 };
-function MainLayout({ children, title }: LayoutType) {
+export default observer(function MainLayout({ children, title }: LayoutType) {
+  const {sidebarStore} = useStore();
+  const {sidebar} = sidebarStore
     return (
       <>
         <Head>
@@ -26,7 +30,7 @@ function MainLayout({ children, title }: LayoutType) {
           <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
             <AppHeader />
             <main>
-              <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+              <div className={sidebar.open == true ? "px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto opacity-20" : "px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto"} >
                 {children}
               </div>
             </main>
@@ -37,7 +41,5 @@ function MainLayout({ children, title }: LayoutType) {
       </main> */}
       </>
     );
-}
+})
 
-
-export default MainLayout;

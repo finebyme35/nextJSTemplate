@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { useStore } from "stores/store";
+import { observer } from "mobx-react-lite";
+import useOnClickOutSide from "hooks/onClickOutside";
 
-export default function Sidebar() {
-    const [open, setOpen] = useState(false);
+export default observer(function Sidebar() {
+  const sidebarRef = useRef(null);
+  const {sidebarStore} = useStore();
+  const {openSidebar, closeSidebar, sidebar} = sidebarStore;
+  const clickOnClose = () => {
+    if(sidebar.open){
+      closeSidebar()
+    }else{
+      openSidebar()
+    }
+    
+  }
+  useOnClickOutSide(sidebarRef, () => closeSidebar(), "sidebar-close")
   return (
     <>
       <button
         type="button"
         className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-        onClick={() => setOpen(!open)}
+        onClick={() => clickOnClose()}
+        ref={sidebarRef}
       >
         <span className="sr-only">Open sidebar</span>
         <svg
@@ -23,8 +38,9 @@ export default function Sidebar() {
           ></path>
         </svg>
       </button>
-    {open ? <aside
-        className="fixed top-0 md:left-0 left-[50%] z-40 w-auto h-screen transition-transform -translate-x-full sm:translate-x-0"
+    {sidebar.open ? <aside
+        className="fixed top-0 sm:left-0 left-[50%] z-40 w-auto h-screen transition-transform -translate-x-full sm:translate-x-0 sidebar-close"
+      
       tabIndex={-1}>
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <ul className="space-y-2">
@@ -214,4 +230,4 @@ export default function Sidebar() {
       
     </>
   );
-}
+})

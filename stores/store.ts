@@ -3,12 +3,14 @@ import FilterStore from "./eachStore/filterStore";
 import LoadingStore from "./eachStore/loadingStore";
 import LocalStore from "./eachStore/localStore";
 import ModalStore from "./eachStore/modalStore";
+import SidebarStore from "./eachStore/sidebarStore";
 
 interface Store {
     modalStore: ModalStore;
     filterStore: FilterStore;
     localStore: LocalStore;
     loadingStore: LoadingStore;
+    sidebarStore: SidebarStore;
 }
 
 export const store: Store = {
@@ -16,6 +18,7 @@ export const store: Store = {
     filterStore: new FilterStore(),
     localStore: new LocalStore(),
     loadingStore: new LoadingStore(),
+    sidebarStore: new SidebarStore(),
 }
 
 export const StoreContext = createContext(store);
