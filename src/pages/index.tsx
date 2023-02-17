@@ -18,6 +18,8 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "stores/store";
 import ProgressBar from "components/ProgressBar";
 import Carousel from "components/Carousel";
+import FormExample from "components/FormExampleWithReactHookForm";
+import FormExampleWithInputComponent from "components/FormExampleWithInputComponent";
 
 const mockData = [
   { id: 0, value: "1", label: "Select 1" },
@@ -160,6 +162,8 @@ export default observer(function Home({countries}: any) {
         {modal.body}
         <ProgressBar  bgcolor={"#24af"} completed={completed} />
         <Carousel carouselData={carouselData}/>
+        <FormExample />
+        <FormExampleWithInputComponent />
       </main>
     </>
   );
