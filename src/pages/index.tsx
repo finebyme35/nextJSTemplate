@@ -8,7 +8,7 @@ import Switch from "components/Switch";
 import Table from "components/TableComponent/Table";
 import { StatusPill } from "components/TableComponent/TableStatusPill";
 import Head from "next/head";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { carouselData, getData, testProgressBarData } from "utils/mockData";
 import { AvatarCell } from "components/TableComponent/TableAvatarCell";
 import ProgressStatus from "components/ProgressStatus";
@@ -20,6 +20,10 @@ import ProgressBar from "components/ProgressBar";
 import Carousel from "components/Carousel";
 import FormExample from "components/FormExampleWithReactHookForm";
 import FormExampleWithInputComponent from "components/FormExampleWithInputComponent";
+import { InputColumnFilter } from "components/TableComponent/TableInputColumnFilter";
+import Dropzone from "components/Dropzone/Dropzone";
+import ImageGride from "components/Dropzone/ImageGrid";
+import FileUpload from "components/FileUpload";
 
 const mockData = [
   { id: 0, value: "1", label: "Select 1" },
@@ -27,7 +31,7 @@ const mockData = [
   { id: 2, value: "3", label: "Select 3" },
 ];
 
-export default observer(function Home({countries}: any) {
+export default observer(function Home({ countries }: any) {
   const [getvalue, setValue] = useState("");
   const [getvalue1, setValue1] = useState("0");
   const [getvalue2, setValue2] = useState("0");
@@ -37,23 +41,24 @@ export default observer(function Home({countries}: any) {
   const [getDateValue, setDateValue] = useState("");
   let [checked, setChecked] = useState(false);
   let [datas, setDatas] = useState();
-  let [email, setEmail] = useState('johndoe@graphcms.com');
-  const {filterStore, modalStore} = useStore();
-  const { filter, getFilterData} = filterStore
-  const {openModal, modal, closeModal} = modalStore
+  let [email, setEmail] = useState("johndoe@graphcms.com");
+  const { filterStore, modalStore } = useStore();
+  const { filter, getFilterData } = filterStore;
+  const { openModal, modal, closeModal } = modalStore;
   const columns = useMemo(
     () => [
       {
         Header: "Name",
         accessor: "name",
         Cell: AvatarCell,
-      imgAccessor: "imgUrl",
-      emailAccessor: "email",
-      
+        imgAccessor: "imgUrl",
+        emailAccessor: "email",
       },
       {
         Header: "Title",
         accessor: "title",
+        Filter: InputColumnFilter,
+        filter: "includes",
       },
       {
         Header: "Status",
@@ -77,15 +82,28 @@ export default observer(function Home({countries}: any) {
   const [completed, setCompleted] = useState(0);
 
   useEffect(() => {
-    setCompleted(65)
+    setCompleted(65);
   }, []);
-    useMemo(() => {
-      
-      if(filter){
-        // console.log(getFilterData(datass, "Admin"))
+  useMemo(() => {
+    if (filter) {
+      // console.log(getFilterData(datass, "Admin"))
+    }
+  }, []);
 
-      }
-    },[])
+  const [images, setImages] = useState<any>([]);
+  const onDrop = useCallback((acceptedFiles: any) => {
+    acceptedFiles.map((file: any) => {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        setImages((prevState: any) => [
+          ...prevState,
+          { id: "1", src: e.target?.result },
+        ]);
+      };
+      reader.readAsDataURL(file);
+      return file;
+    });
+  }, []);
   return (
     <>
       <Head>
@@ -123,7 +141,7 @@ export default observer(function Home({countries}: any) {
           childOnlyFieldRequiredMax="Number"
           childOnlyFieldRequiredMin="Number"
         />
-        <PhoneInput />
+        
         <Dropdown
           placeHolder="Select..."
           options={mockData}
@@ -153,24 +171,62 @@ export default observer(function Home({countries}: any) {
           dataYes="Yes"
           dataNo="No"
         /> */}
-         <DatePicker setValue={setDateValue} getValue={getDateValue} />
+        <DatePicker setValue={setDateValue} getValue={getDateValue} />
         <Table columns={columns} data={datass} />
         {/* <ProgressStatus /> */}
         {/* <RichTextSunEditor data={datas} setData={setDatas}/> */}
-        <><button onClick={() => openModal(<Stateless />)}>Open</button></>
-        <><button onClick={() => closeModal()}>Close</button></>
+        <>
+          <button onClick={() => openModal(<Stateless />)}>Open</button>
+        </>
+        <>
+          <button onClick={() => closeModal()}>Close</button>
+        </>
         {modal.body}
-        <ProgressBar  bgcolor={"#24af"} completed={completed} />
-        <Carousel carouselData={carouselData}/>
+        <ProgressBar bgcolor={"#24af"} completed={completed} />
+        <Carousel carouselData={carouselData} />
         <FormExample />
         <FormExampleWithInputComponent />
+        <PhoneInput />
+        <Dropdown
+          placeHolder="Select..."
+          options={mockData}
+          selectedArrayValue={selectedValue}
+          setSelectedValue={setSelectedValue}
+          isMulti={true}
+          outsideClickClassName="div.dropdown-menu"
+          isSearchable
+        />
+        <Input
+          password={true}
+          passwordType={{ color: "black", size: 16, wrapClassName: "" }}
+          getValue={getvalue}
+          setValue={setValue}
+          maxLength={10}
+          wrapClassName="rounded-xl p-5"
+          leftEye={false}
+          type={"password"}
+        />
+        <ProgressStatus />
+        <Switch
+          name="Toggle"
+          id="toggleSwitch"
+          checked={checked}
+          setChecked={setChecked}
+          dataYes="Yes"
+          dataNo="No"
+        />
+        <main className="App">
+          <h1 className="text-center">Drag and Drop Test</h1>
+          <Dropzone onDrop={onDrop} accept={"image/*"} />
+          <ImageGride images={images} />
+        </main>
+        
       </main>
+      <FileUpload />
     </>
   );
-})
+});
 
 const Stateless = () => {
-  return(
-    <div>modal</div>
-  )
-}
+  return <div>modal</div>;
+};

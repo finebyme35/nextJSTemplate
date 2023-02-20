@@ -61,7 +61,7 @@ function Table({ columns, data }: IProps) {
           </h1>
         </div>
         <div className="mt-4">
-          <div className="sm:flex gap-x-2">
+          <div className="sm:flex gap-x-2 text-center w-[50%]">
             <GlobalFilter
               preGlobalFilteredRows={preGlobalFilteredRows}
               globalFilter={state.globalFilter}
@@ -70,7 +70,7 @@ function Table({ columns, data }: IProps) {
             {headerGroups.map((headerGroup) =>
               headerGroup.headers.map((column, idx) =>
                 column.Filter ? (
-                  <div key={idx}>
+                  <div key={idx} className={"text-center w-[50%]"}>
                     {column.render("Filter")}
                   </div>
                 ) : null
