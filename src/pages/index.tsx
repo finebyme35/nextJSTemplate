@@ -21,11 +21,11 @@ import Carousel from "components/Carousel";
 import FormExample from "components/FormExampleWithReactHookForm";
 import FormExampleWithInputComponent from "components/FormExampleWithInputComponent";
 import { InputColumnFilter } from "components/TableComponent/TableInputColumnFilter";
-import Dropzone from "components/Dropzone/Dropzone";
 import ImageGride from "components/Dropzone/ImageGrid";
 import FileUpload from "components/FileUpload";
 import Tabs from "components/TabAndTabPane.tsx/Tabs";
 import TabPane from "components/TabAndTabPane.tsx/TabPane";
+import Dropzones from "components/Dropzone/Dropzone";
 
 const mockData = [
   { id: 0, value: "1", label: "Select 1" },
@@ -219,7 +219,7 @@ export default observer(function Home({ countries }: any) {
         />
         <main className="App">
           <h1 className="text-center">Drag and Drop Test</h1>
-          <Dropzone onDrop={onDrop} accept={"image/*"} />
+          <Dropzones  onDrop={onDrop}/>
           <ImageGride images={images} />
         </main>
         

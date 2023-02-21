@@ -10,7 +10,7 @@ export default observer(function Tabs({data, defaultActiveKey}: any) {
     useEffect(() => {changeTab(defaultActiveKey, data)},[])
   return (
     <div className="border-b border-gray-200 dark:border-gray-700">
-    <ul className="flex  overflow-x-scroll -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+    <ul className="flex  md:overflow-x-hidden overflow-x-scroll -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
         {data.map((x: any, i: any) => {
             return <li className="mr-2" onClick={() => changeTab(i, data)} key={i}>
             <a href="#" className={selectedTab == i ? "inline-flex p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500 group" : "inline-flex p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"}>

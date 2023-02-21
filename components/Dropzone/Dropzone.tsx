@@ -1,10 +1,12 @@
-import { useDropzone } from "React-dropzone";
-function Dropzone({ onDrop, accept, open }: any) {
+import { observer } from "mobx-react-lite";
+import { useCallback, useState } from "react";
+import {  useDropzone } from "react-dropzone";
+
+
+export default observer(function Dropzones({ onDrop, open }: any) {
+  
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
-    useDropzone({
-      accept,
-      onDrop,
-    });
+    useDropzone({onDrop});
   const files = acceptedFiles.map((file: any) => (
     <li key={file.path}>
       {file.path} - {file.size} bytes
@@ -34,5 +36,4 @@ function Dropzone({ onDrop, accept, open }: any) {
       </aside>
     </div>
   );
-}
-export default Dropzone;
+})

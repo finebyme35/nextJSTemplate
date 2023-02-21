@@ -1,4 +1,4 @@
-import { TabsPaneChange } from "components/TabAndTabPane.tsx/TabPane";
+import { TabsPaneChange } from "components/TabAndTabPane.tsx/changeTabsPanes/ChangeTabPane";
 import { useStore } from "stores/store";
 
 export const getData = () => {
