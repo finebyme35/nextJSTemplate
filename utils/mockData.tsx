@@ -1,3 +1,6 @@
+import { TabsPaneChange } from "components/TabAndTabPane.tsx/TabPane";
+import { useStore } from "stores/store";
+
 export const getData = () => {
     const data = [{
       name: "Jane Cooper",
@@ -75,3 +78,13 @@ export const carouselData = [
   {id: 1,image: "/gorsel1.jpg", active:true},
   {id: 2, image: "/gorsel2.jpg", active: false}
 ]
+
+
+
+export const tabsData = [
+  {id: 0, name: "Profile", body: <TabsPaneChange />},
+  {id: 1, name: "Settings", body: <TabsPaneChange />},
+  {id: 2, name: "Dashboard", body:  <TabsPaneChange />},
+  {id: 3, name: "Orders", body: <TabsPaneChange />},
+]
+

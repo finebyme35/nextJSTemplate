@@ -9,7 +9,7 @@ import Table from "components/TableComponent/Table";
 import { StatusPill } from "components/TableComponent/TableStatusPill";
 import Head from "next/head";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { carouselData, getData, testProgressBarData } from "utils/mockData";
+import { carouselData, getData, tabsData, testProgressBarData } from "utils/mockData";
 import { AvatarCell } from "components/TableComponent/TableAvatarCell";
 import ProgressStatus from "components/ProgressStatus";
 import RichTextSunEditor from "components/RichTextSunEditor";
@@ -24,6 +24,8 @@ import { InputColumnFilter } from "components/TableComponent/TableInputColumnFil
 import Dropzone from "components/Dropzone/Dropzone";
 import ImageGride from "components/Dropzone/ImageGrid";
 import FileUpload from "components/FileUpload";
+import Tabs from "components/TabAndTabPane.tsx/Tabs";
+import TabPane from "components/TabAndTabPane.tsx/TabPane";
 
 const mockData = [
   { id: 0, value: "1", label: "Select 1" },
@@ -223,6 +225,9 @@ export default observer(function Home({ countries }: any) {
         
       </main>
       <FileUpload />
+      <Tabs data={tabsData} defaultActiveKey={"2"} />
+      <TabPane />
+
     </>
   );
 });
@@ -230,3 +235,4 @@ export default observer(function Home({ countries }: any) {
 const Stateless = () => {
   return <div>modal</div>;
 };
+
