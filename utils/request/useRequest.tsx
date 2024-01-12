@@ -1,9 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-// axios.defaults.baseURL = process.env.BACKEND_URL
-//   ? process.env.BACKEND_URL
-//   : "http://next-api.otonakit.com/api/";
-axios.defaults.baseURL = "http://next-api.otonakit.com/api/";
+axios.defaults.baseURL = ""
 const responseBody = <T,>(response: AxiosResponse<T>) => response.data;
 
 const requests = {
