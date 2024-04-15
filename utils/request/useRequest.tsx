@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-axios.defaults.baseURL = ""
+axios.defaults.baseURL = "http://127.0.0.1:8000"
 const responseBody = <T,>(response: AxiosResponse<T>) => response.data;
 
 const requests = {

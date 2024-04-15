@@ -1,6 +1,4 @@
 interface IResponseData {
-  message: string;
-  status: number;
   data?: string[] | undefined;
 }
 

@@ -1,4 +1,3 @@
-import Sidebar from "./Sidebar";
 
 function AppHeader() {
   return (<>
@@ -14,7 +13,6 @@ function AppHeader() {
             </div>
           </div>
           <div className='flex items-center gap-3'>
-          <Sidebar />
             <div>
               <button className="bg-purple-50 hover:bg-purple-100  p-2 rounded-xl transition-all" >
               </button>

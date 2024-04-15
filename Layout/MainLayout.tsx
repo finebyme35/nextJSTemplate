@@ -1,7 +1,7 @@
+import HeuristicsNetDiagram from "components/Heuristic/HeuristicNetVisualization";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import { useStore } from "stores/store";
-import { observer } from "mobx-react-lite";
+import { HeuristicNetImageService } from "utils/request/requestService/heuristicNetImageRequest";
 
 const AppHeader = dynamic(() => import("./AppHeader"), {
   ssr: false,
@@ -11,9 +11,7 @@ type LayoutType = {
   children?: React.ReactNode;
   title?: string;
 };
-export default observer(function MainLayout({ children, title }: LayoutType) {
-  const {sidebarStore} = useStore();
-  const {sidebar} = sidebarStore
+export default function MainLayout({ children, title }: LayoutType) {
     return (
       <>
         <Head>
@@ -24,13 +22,9 @@ export default observer(function MainLayout({ children, title }: LayoutType) {
           />
         </Head>
         <div className="flex h-screen overflow-hidden">
-          <div className="hidden md:block">
-            <h1>Left Menu If You Want</h1>
-          </div>
-          <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-            <AppHeader />
-            <main>
-              <div className={sidebar.open == true ? "px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto opacity-20" : "px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto"} >
+          <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden ">
+            <main className="m-[30px]">
+              <div className="w-full mx-auto h-full" >
                 {children}
               </div>
             </main>
@@ -41,5 +35,5 @@ export default observer(function MainLayout({ children, title }: LayoutType) {
       </main> */}
       </>
     );
-})
+}
 

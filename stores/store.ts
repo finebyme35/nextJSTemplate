@@ -1,31 +1,22 @@
-import { createContext, useContext } from "react";
-import FilterStore from "./eachStore/filterStore";
-import LoadingStore from "./eachStore/loadingStore";
-import LocalStore from "./eachStore/localStore";
-import ModalStore from "./eachStore/modalStore";
-import SidebarStore from "./eachStore/sidebarStore";
-import TabsStore from "./eachStore/tabsStore";
+import { configureStore } from "@reduxjs/toolkit";
+import {
+  useDispatch as useDispatchBase,
+  useSelector as useSelectorBase,
+} from "react-redux";
+import processMinerSlice from "./eachStore/processMiner";
 
-interface Store {
-    modalStore: ModalStore;
-    filterStore: FilterStore;
-    localStore: LocalStore;
-    loadingStore: LoadingStore;
-    sidebarStore: SidebarStore;
-    tabsStore: TabsStore;
-}
+export const store = configureStore({
+  reducer: {
+    processMiners: processMinerSlice,
+  },
+});
 
-export const store: Store = {
-    modalStore: new ModalStore(),
-    filterStore: new FilterStore(),
-    localStore: new LocalStore(),
-    loadingStore: new LoadingStore(),
-    sidebarStore: new SidebarStore(),
-    tabsStore: new TabsStore()
-}
+export type RootState = ReturnType<typeof store.getState>;
 
-export const StoreContext = createContext(store);
+export type AppDispatch = typeof store.dispatch;
 
-export function useStore () {
-    return useContext(StoreContext);
-}
+export const useDispatch = () => useDispatchBase<AppDispatch>();
+
+export const useSelector = <TSelected = unknown>(
+  selector: (state: RootState) => TSelected
+): TSelected => useSelectorBase<RootState, TSelected>(selector);

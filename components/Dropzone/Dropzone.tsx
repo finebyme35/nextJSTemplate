@@ -1,9 +1,8 @@
-import { observer } from "mobx-react-lite";
 import { useCallback, useState } from "react";
 import {  useDropzone } from "react-dropzone";
 
 
-export default observer(function Dropzones({ onDrop, open }: any) {
+export default function Dropzones({ onDrop, open }: any) {
   
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
     useDropzone({onDrop});
@@ -36,4 +35,4 @@ export default observer(function Dropzones({ onDrop, open }: any) {
       </aside>
     </div>
   );
-})
+}
